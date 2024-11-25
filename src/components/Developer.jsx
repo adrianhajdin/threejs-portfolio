@@ -12,6 +12,16 @@ import { SkeletonUtils } from 'three-stdlib';
 const Developer = ({ animationName = 'idle', ...props }) => {
   const group = useRef();
 
+ const cleanAnimationTrackNames = (animations, prefixToRemove) => {
+      animations.forEach((animation) => {
+          animation.tracks.forEach((track) => {
+              if (track.name.startsWith(prefixToRemove)) {
+                  track.name = track.name.replace(prefixToRemove, '');
+              }
+          });
+      });
+  };
+
   const { scene } = useGLTF('/models/animations/developer.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
@@ -22,9 +32,17 @@ const Developer = ({ animationName = 'idle', ...props }) => {
   const { animations: victoryAnimation } = useFBX('/models/animations/victory.fbx');
 
   idleAnimation[0].name = 'idle';
+  cleanAnimationTrackNames(idleAnimation, "mixamorig");
+
   saluteAnimation[0].name = 'salute';
+  cleanAnimationTrackNames(idleAnimation, "mixamorig");
+
   clappingAnimation[0].name = 'clapping';
+  cleanAnimationTrackNames(idleAnimation, "mixamorig");
+
   victoryAnimation[0].name = 'victory';
+  cleanAnimationTrackNames(idleAnimation, "mixamorig");
+
 
   const { actions } = useAnimations(
     [idleAnimation[0], saluteAnimation[0], clappingAnimation[0], victoryAnimation[0]],
