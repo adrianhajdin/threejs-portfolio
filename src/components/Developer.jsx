@@ -12,7 +12,7 @@ import { SkeletonUtils } from 'three-stdlib';
 const Developer = ({ animationName = 'idle', ...props }) => {
   const group = useRef();
 
-  const { scene } = useGLTF('/models/animations/developer.glb');
+  const { scene } = useGLTF('/models/animations/jan.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
 
@@ -31,80 +31,76 @@ const Developer = ({ animationName = 'idle', ...props }) => {
     group,
   );
 
+  // Debug: Log available nodes and materials
+  useEffect(() => {
+    console.log('=== JAN.GLB MODEL STRUCTURE ===');
+    console.log('Available nodes:', Object.keys(nodes));
+    console.log('Available materials:', Object.keys(materials));
+    
+    // Log each node with its properties
+    Object.entries(nodes).forEach(([name, node]) => {
+      console.log(`Node: ${name}`, {
+        type: node.type,
+        hasGeometry: !!node.geometry,
+        hasMaterial: !!node.material,
+        hasChildren: node.children?.length > 0,
+        childrenCount: node.children?.length || 0
+      });
+    });
+  }, [nodes, materials]);
+
   useEffect(() => {
     actions[animationName].reset().fadeIn(0.5).play();
     return () => actions[animationName].fadeOut(0.5);
   }, [animationName]);
 
+  // Helper function to safely render a mesh if it exists
+  const renderMesh = (nodeName, materialName, meshName) => {
+    const node = nodes[nodeName];
+    const material = materials[materialName];
+    
+    if (!node || !material) {
+      return null;
+    }
+
+    return (
+      <skinnedMesh
+        key={nodeName}
+        name={meshName || nodeName}
+        geometry={node.geometry}
+        material={material}
+        skeleton={node.skeleton}
+        morphTargetDictionary={node.morphTargetDictionary}
+        morphTargetInfluences={node.morphTargetInfluences}
+      />
+    );
+  };
+
   return (
     <group ref={group} {...props} dispose={null}>
+      {/* Use the Hips bone as root (confirmed to exist in jan.glb) */}
       <primitive object={nodes.Hips} />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Hair.geometry}
-        material={materials.Wolf3D_Hair}
-        skeleton={nodes.Wolf3D_Hair.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Glasses.geometry}
-        material={materials.Wolf3D_Glasses}
-        skeleton={nodes.Wolf3D_Glasses.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Body.geometry}
-        material={materials.Wolf3D_Body}
-        skeleton={nodes.Wolf3D_Body.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
-        material={materials.Wolf3D_Outfit_Bottom}
-        skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
-        material={materials.Wolf3D_Outfit_Footwear}
-        skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Top.geometry}
-        material={materials.Wolf3D_Outfit_Top}
-        skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
-      />
-      <skinnedMesh
-        name="EyeLeft"
-        geometry={nodes.EyeLeft.geometry}
-        material={materials.Wolf3D_Eye}
-        skeleton={nodes.EyeLeft.skeleton}
-        morphTargetDictionary={nodes.EyeLeft.morphTargetDictionary}
-        morphTargetInfluences={nodes.EyeLeft.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="EyeRight"
-        geometry={nodes.EyeRight.geometry}
-        material={materials.Wolf3D_Eye}
-        skeleton={nodes.EyeRight.skeleton}
-        morphTargetDictionary={nodes.EyeRight.morphTargetDictionary}
-        morphTargetInfluences={nodes.EyeRight.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Wolf3D_Head"
-        geometry={nodes.Wolf3D_Head.geometry}
-        material={materials.Wolf3D_Skin}
-        skeleton={nodes.Wolf3D_Head.skeleton}
-        morphTargetDictionary={nodes.Wolf3D_Head.morphTargetDictionary}
-        morphTargetInfluences={nodes.Wolf3D_Head.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Wolf3D_Teeth"
-        geometry={nodes.Wolf3D_Teeth.geometry}
-        material={materials.Wolf3D_Teeth}
-        skeleton={nodes.Wolf3D_Teeth.skeleton}
-        morphTargetDictionary={nodes.Wolf3D_Teeth.morphTargetDictionary}
-        morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences}
-      />
+      
+      {/* Render available meshes - only the ones that exist in jan.glb */}
+      {renderMesh('Wolf3D_Hair', 'Wolf3D_Hair', 'Hair')}
+      {renderMesh('Wolf3D_Body', 'Wolf3D_Body', 'Body')}
+      {renderMesh('Wolf3D_Outfit_Bottom', 'Wolf3D_Outfit_Bottom', 'OutfitBottom')}
+      {renderMesh('Wolf3D_Outfit_Footwear', 'Wolf3D_Outfit_Footwear', 'Footwear')}
+      {renderMesh('Wolf3D_Outfit_Top', 'Wolf3D_Outfit_Top', 'OutfitTop')}
+      {renderMesh('EyeLeft', 'Wolf3D_Eye', 'EyeLeft')}
+      {renderMesh('EyeRight', 'Wolf3D_Eye', 'EyeRight')}
+      {renderMesh('Wolf3D_Head', 'Wolf3D_Skin', 'Head')}
+      {renderMesh('Wolf3D_Teeth', 'Wolf3D_Teeth', 'Teeth')}
     </group>
   );
 };
 
-useGLTF.preload('/models/animations/developer.glb');
+useGLTF.preload('/models/animations/jan.glb');
+
+// Preload animations to reduce loading warnings
+useFBX.preload('/models/animations/idle.fbx');
+useFBX.preload('/models/animations/salute.fbx');
+useFBX.preload('/models/animations/clapping.fbx');
+useFBX.preload('/models/animations/victory.fbx');
 
 export default Developer;

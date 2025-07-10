@@ -1,0 +1,149 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
+\usepackage{enumitem}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{anyfontsize}
+
+% Remove section numbering
+\setcounter{secnumdepth}{0}
+
+% Custom font size - meeting 10.5+ requirement
+\renewcommand{\normalsize}{\fontsize{10.5}{12.6}\selectfont}
+\normalsize
+
+% Define section style with better spacing
+\renewcommand{\section}[1]{%
+    \vspace{0.4em}%
+    {\Large\textbf{#1}}\\[-0.7em]%
+    \rule{\textwidth}{1pt}%
+    \vspace{0.2em}%
+}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+{\Large\textbf{Jan Magnus Heimann}}\\[0.2em]
+heimann.ai\\[0.2em]
+jan@heimann.ai
+\end{center}
+
+\section{Professional Profile}
+AI/ML Engineer specializing in Reinforcement Learning and Large Language Models with proven track record of deploying production-grade AI systems. Delivered significant business impact including \$1.5M cost reduction through RL-based optimization and 20\% engagement improvement in advertising. Expert in training and fine-tuning transformer models, implementing multi-agent RL systems, and building scalable ML pipelines.
+
+\section{Skills}
+\textbf{Programming Languages:} Python, JavaScript, TypeScript, C++, SQL, Swift\\
+\textbf{Machine Learning:} PyTorch, TensorFlow, Hugging Face Transformers, LangChain, CUDA, JAX\\
+\textbf{Reinforcement Learning:} PPO, SAC, DQN, A3C, Multi-Agent RL, Reward Shaping, Policy Gradient Methods\\
+\textbf{LLMs \& NLP:} Fine-tuning (LoRA/QLoRA), RAG Systems, Context Engineering, Vector Databases\\
+\textbf{MLOps:} Docker, Kubernetes, AWS, GCP,  MLflow, Weights \& Biases, Model Serving, Comet ML
+
+
+
+
+
+\section{Experience}
+
+\textbf{Machine Learning Engineer} \hfill Apr 2025 – Present\\[0.05em]
+\textit{DRWN AI}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Developing Multi-Agent Reinforcement Learning system using PPO to optimize advertising budget allocation, achieving 15-25\% improvement in cost-per-acquisition (CPA) across client campaigns
+    \item Implemented custom reward functions adapting to diverse KPIs (CTR, ROAS, impressions), reducing average cost-per-click by 18\% while maintaining target reach
+    \item Built real-time inference pipeline serving RL policies with 95ms latency, processing 2M+ daily bid decisions across 50+ active campaigns
+    \item Integrated transformer models for campaign feature extraction, improving RL convergence speed by 30\% through better state representations
+\end{itemize}
+
+\textbf{Machine Learning Engineer/Advisor, Part time} \hfill Oct 2024 – Mar 2025\\[0.05em]
+\textit{Deepmask GmbH}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Fine-tuned DeepSeek R1 (70B parameters) using LoRA with rank-16 adaptation, achieving +4\% BLEU and +6\% ROUGE-L on German benchmarks
+    \item Implemented production RAG system combining dense embeddings with hybrid search, processing 100K+ documents with 92\% retrieval accuracy
+    \item Optimized LLM inference using quantization and batching strategies, achieving 3x throughput improvement while maintaining quality
+    \item Built comprehensive evaluation framework tracking perplexity, task-specific metrics, and human preference alignment across multiple German NLP benchmarks
+\end{itemize}
+
+\textbf{Machine Learning Engineer} \hfill Mar 2024 – Mar 2025\\[0.05em]
+\textit{Rocket Factory Augsburg AG}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Designed RL pipeline using PPO to optimize rocket design parameters, training agents to minimize cost-per-payload while satisfying structural constraints
+    \item Implemented Graph Neural Networks to encode rocket component relationships, providing state representations for RL agents evaluating 100K+ configurations
+    \item Created custom OpenAI Gym environment interfacing with physics simulators, enabling RL agents to learn from 10K+ simulated trajectories
+    \item Achieved \$1.5M projected cost reduction per launch through RL-discovered optimizations improving structural efficiency by 12\%
+\end{itemize}
+
+\textbf{Assistant Machine Learning Researcher} \hfill May 2024 – Dec 2024\\[0.05em]
+\textit{Massachusetts Institute of Technology}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Developed Graph Neural Networks with attention mechanisms for material synthesis prediction, improving accuracy by 9.2\% over baseline methods
+    \item Implemented multi-task transformer pretraining on 500K material descriptions, fine-tuning shared representations across 12 downstream tasks
+    \item Applied BERT-style masked language modeling to scientific text, creating domain-specific embeddings that improved material property prediction by 4.7\%
+\end{itemize}
+
+\textbf{Software Engineer} \hfill Jan 2023 – Mar 2024\\[0.05em]
+\textit{OHB Systems AG}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Built ML pipeline automating FEM analysis using Gaussian Processes for uncertainty quantification, reducing engineering cycle time by 25\%
+    \item Developed LSTM-based anomaly detection for satellite telemetry data, implementing attention mechanisms for interpretable predictions
+    \item Deployed models using MLflow and Docker, establishing continuous training pipelines triggered by distribution shift detection
+\end{itemize}
+
+\textbf{Co-Founder/Software Lead} \hfill Jan 2021 – Dec 2022\\[0.05em]
+\textit{GetMoBie GmbH}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Led development of mobile banking application serving 20K+ users, presenting at "Die Höhle der Löwen" TV show
+    \item Implemented Random Forest models for transaction categorization and fraud detection on 1M+ records, achieving 0.95 AUC
+    \item Built collaborative filtering recommendation system using matrix factorization, increasing financial product adoption by 15\%
+    \item Managed team of 5 developers while establishing ML pipelines for real-time inference and model monitoring
+\end{itemize}
+
+\textbf{Machine Learning Engineer Intern} \hfill Aug 2020 – May 2021\\[0.05em]
+\textit{BMW AG}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Created job recommendation system using collaborative filtering on implicit feedback data, facilitating 100+ internal role transitions
+    \item Implemented document classification using TF-IDF and SVM, achieving 89\% F1-score on 50K corporate documents
+\end{itemize}
+
+\section{Projects}
+
+\textbf{AutoApply - AI Job Application Automation SaaS}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Built multi-agent system using GPT-4 and Claude-3 APIs to automate job applications, generating \$480K ARR with 10K+ monthly active users
+    \item Implemented form detection using fine-tuned YOLOv8 achieving 94.3\% accuracy, processing 78K+ successful applications
+    \item Scaled infrastructure to handle 2.8M+ monthly queries with 99.7\% uptime using containerized microservices
+\end{itemize}
+
+\textbf{OpenRLHF Fork - Scalable RLHF Training Framework}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Forked and enhanced OpenRLHF framework to implement hybrid DPO/PPO training pipeline, reducing GPU memory usage by 15\% through gradient checkpointing optimizations
+    \item Achieved 23\% faster convergence on reward model training by implementing adaptive KL penalty scheduling and batch-wise advantage normalization
+    \item Contributed multi-node distributed training support using DeepSpeed ZeRO-3, enabling training of 13B parameter models on 8x A100 clusters
+\end{itemize}
+
+\textbf{Domain-Specific GPT-2 Fine-Tuning}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Fine-tuned GPT-2 medium on 10K aerospace papers using custom tokenizer with domain-specific vocabulary extensions
+    \item Achieved 12\% ROUGE score improvement for technical summarization through careful hyperparameter tuning and data augmentation
+    \item Implemented distributed training across 4 GPUs using gradient accumulation to simulate larger batch sizes
+\end{itemize}
+
+\textbf{ArchUnit TypeScript - Open Source Library}
+\begin{itemize}[leftmargin=*, topsep=1pt, itemsep=1pt, label=$\bullet$]
+    \item Created TypeScript architecture testing library achieving 400+ GitHub stars and widespread adoption in JavaScript ecosystem
+    \item Implemented AST-based static analysis supporting circular dependency detection, layered architecture validation, and code metrics (LCOM, coupling, abstractness)
+    \item Built pattern matching system with glob/regex support and universal testing framework integration (Jest, Vitest, Jasmine, Mocha)
+\end{itemize}
+
+\section{Publications}
+Heimann, J., et al. "Reaction Graph Networks for Inorganic Synthesis Condition Prediction of Solid State Materials", \textit{AI4Mat-2024: NeurIPS 2024 Workshop on AI for Accelerated Materials Design}
+
+\section{Education}
+\textbf{Bachelor of Science in Aerospace Engineering} \hfill 2025\\
+Technical University of Munich
+
+\textbf{Bachelor of Science in Astronomical \& Planetary Sciences} \hfill 2024\\
+Arizona State University
+
+\end{document}

@@ -5,17 +5,39 @@ Files: hacker-room-new.glb [34.62MB] > /Users/hsuwinlat/Desktop/jsm pj/threejscc
 */
 
 import { useGLTF, useTexture } from '@react-three/drei';
+import { useEffect } from 'react';
 
 export function HackerRoom(props) {
   const { nodes, materials } = useGLTF('/models/hacker-room.glb');
 
   const monitortxt = useTexture('textures/desk/monitor.png');
-  const screenTxt = useTexture('textures/desk/screen.png');
+  // Option 1: Replace the original screen.png file
+  // const screenTxt = useTexture('textures/desk/screen.png');
+  
+  // Option 2: Use your own photo (uncomment the line below and comment the line above)
+  const screenTxt = useTexture('textures/jan_photo.png');
+
+  // Configure the photo texture to show face clearly
+  useEffect(() => {
+    if (screenTxt) {
+      // Center the face and prevent hair cutoff
+      screenTxt.wrapS = screenTxt.wrapT = 1001; // ClampToEdgeWrapping
+      screenTxt.offset.set(0.1, 0.2); // Shift more left and slightly up to center face
+      screenTxt.repeat.set(1.2, 1.2); // Scale up slightly to show more of the image
+      screenTxt.center.set(0.5, 0.5); // Set center point for transformations
+      screenTxt.needsUpdate = true;
+    }
+  }, [screenTxt]);
 
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.screen_screens_0.geometry} material={materials.screens}>
-        <meshMatcapMaterial map={screenTxt} />
+        <meshBasicMaterial 
+          map={screenTxt} 
+          toneMapped={false}
+          transparent={false}
+          side={2}
+        />
       </mesh>
       <mesh geometry={nodes.screen_glass_glass_0.geometry} material={materials.glass} />
       <mesh geometry={nodes.table_table_mat_0_1.geometry} material={materials.table_mat} />
