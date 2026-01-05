@@ -15,6 +15,7 @@
     "@react-three/drei": "^9.111.3",
     "@react-three/fiber": "^8.17.6",
     "@types/three": "^0.168.0",
+    "framer-motion": "^12.23.26",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",
     "maath": "^0.10.8",
@@ -22,6 +23,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-globe.gl": "^2.27.2",
+    "react-icons": "^5.5.0",
     "react-responsive": "^10.0.0",
     "three": "^0.167.1",
     "three-stdlib": "^2.32.2"

@@ -10,6 +10,7 @@ import { useGSAP } from '@gsap/react';
 const DemoComputer = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF('/models/computer.glb');
+  // eslint-disable-next-line no-unused-vars
   const { actions } = useAnimations(animations, group);
 
   const txt = useVideoTexture(props.texture ? props.texture : '/textures/project/project1.mp4');
