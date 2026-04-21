@@ -1,7 +1,91 @@
-import { useState } from 'react';
-import Globe from 'react-globe.gl';
+import { useState, useRef, useEffect } from 'react';
 
 import Button from '../components/Button.jsx';
+
+const SimpleGlobe = () => {
+  const canvasRef = useRef(null);
+  const animationRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let rotation = 0;
+
+    const drawGlobe = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = Math.min(canvas.width, canvas.height) / 2 - 10;
+
+      const gradient = ctx.createRadialGradient(
+        centerX - radius * 0.3,
+        centerY - radius * 0.3,
+        0,
+        centerX,
+        centerY,
+        radius
+      );
+      gradient.addColorStop(0, '#1a3a5c');
+      gradient.addColorStop(0.5, '#0d2137');
+      gradient.addColorStop(1, '#05101a');
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.strokeStyle = 'rgba(100, 150, 200, 0.3)';
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < 8; i++) {
+        const offset = (rotation + i * Math.PI / 4) % (Math.PI * 2);
+        const ellipseRadius = Math.abs(Math.sin(offset)) * radius * 0.9;
+        
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, ellipseRadius, radius * 0.9, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = 'rgba(100, 150, 200, 0.2)';
+      for (let i = 0; i < 6; i++) {
+        const y = centerY - radius + (i + 1) * (radius * 2 / 7);
+        ctx.beginPath();
+        ctx.moveTo(centerX - radius * 0.9, y);
+        ctx.lineTo(centerX + radius * 0.9, y);
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(100, 200, 255, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      rotation += 0.005;
+      animationRef.current = requestAnimationFrame(drawGlobe);
+    };
+
+    drawGlobe();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={326}
+      height={326}
+      className="rounded-full"
+    />
+  );
+};
 
 const About = () => {
   const [hasCopied, setHasCopied] = useState(false);
@@ -49,17 +133,7 @@ const About = () => {
         <div className="col-span-1 xl:row-span-4">
           <div className="grid-container">
             <div className="rounded-3xl w-full sm:h-[326px] h-fit flex justify-center items-center">
-              <Globe
-                height={326}
-                width={326}
-                backgroundColor="rgba(0, 0, 0, 0)"
-                backgroundImageOpacity={0.5}
-                showAtmosphere
-                showGraticules
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                labelsData={[{ lat: 40, lng: -100, text: 'Rjieka, Croatia', color: 'white', size: 15 }]}
-              />
+              <SimpleGlobe />
             </div>
             <div>
               <p className="grid-headtext">I’m very flexible with time zone communications & locations</p>

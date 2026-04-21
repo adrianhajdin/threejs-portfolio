@@ -58,6 +58,7 @@ export const clientReviews = [
 
 export const myProjects = [
   {
+    id: 1,
     title: 'Podcastr - AI Podcast Platform',
     desc: 'Podcastr is a revolutionary Software-as-a-Service platform that transforms the way podcasts are created. With advanced AI-powered features like text-to-multiple-voices functionality, it allows creators to generate diverse voiceovers from a single text input.',
     subdesc:
@@ -71,6 +72,7 @@ export const myProjects = [
       boxShadow: '0px 0px 60px 0px #AA3C304D',
     },
     spotlight: '/assets/spotlight1.png',
+    categories: ['React', 'TypeScript', 'AI'],
     tags: [
       {
         id: 1,
@@ -95,6 +97,7 @@ export const myProjects = [
     ],
   },
   {
+    id: 2,
     title: 'LiveDoc - Real-Time Google Docs Clone',
     desc: 'LiveDoc is a powerful collaborative app that elevates the capabilities of real-time document editing. As an enhanced version of Google Docs, It supports millions of collaborators simultaneously, ensuring that every change is captured instantly and accurately.',
     subdesc:
@@ -108,6 +111,7 @@ export const myProjects = [
       boxShadow: '0px 0px 60px 0px #2F6DB54D',
     },
     spotlight: '/assets/spotlight2.png',
+    categories: ['React', 'TypeScript'],
     tags: [
       {
         id: 1,
@@ -132,6 +136,7 @@ export const myProjects = [
     ],
   },
   {
+    id: 3,
     title: 'CarePulse - Health Management System',
     desc: 'An innovative healthcare platform designed to streamline essential medical processes. It simplifies patient registration, appointment scheduling, and medical record management, providing a seamless experience for both healthcare providers and patients.',
     subdesc:
@@ -147,6 +152,7 @@ export const myProjects = [
       boxShadow: '0px 0px 60px 0px rgba(35, 131, 96, 0.3)',
     },
     spotlight: '/assets/spotlight3.png',
+    categories: ['React', 'TypeScript'],
     tags: [
       {
         id: 1,
@@ -171,6 +177,7 @@ export const myProjects = [
     ],
   },
   {
+    id: 4,
     title: 'Horizon - Online Banking Platform',
     desc: 'Horizon is a comprehensive online banking platform that offers users a centralized finance management dashboard. It allows users to connect multiple bank accounts, monitor real-time transactions, and seamlessly transfer money to other users.',
     subdesc:
@@ -184,6 +191,7 @@ export const myProjects = [
       boxShadow: '0px 0px 60px 0px #2F67B64D',
     },
     spotlight: '/assets/spotlight4.png',
+    categories: ['React', 'TypeScript'],
     tags: [
       {
         id: 1,
@@ -208,6 +216,7 @@ export const myProjects = [
     ],
   },
   {
+    id: 5,
     title: 'Imaginify - AI Photo Manipulation App',
     desc: 'Imaginify is a groundbreaking Software-as-a-Service application that empowers users to create stunning photo manipulations using AI technology. With features like AI-driven image editing, a payments system, and a credits-based model.',
     subdesc:
@@ -221,6 +230,7 @@ export const myProjects = [
       boxShadow: '0px 0px 60px 0px #635BFF4D',
     },
     spotlight: '/assets/spotlight5.png',
+    categories: ['React', 'TypeScript', 'AI'],
     tags: [
       {
         id: 1,
@@ -243,6 +253,29 @@ export const myProjects = [
         path: '/assets/framer.png',
       },
     ],
+  },
+];
+
+export const filterCategories = [
+  {
+    id: 'all',
+    name: 'All',
+    label: '全部',
+  },
+  {
+    id: 'React',
+    name: 'React',
+    label: 'React',
+  },
+  {
+    id: 'TypeScript',
+    name: 'TypeScript',
+    label: 'TypeScript',
+  },
+  {
+    id: 'AI',
+    name: 'AI',
+    label: 'AI',
   },
 ];
 
